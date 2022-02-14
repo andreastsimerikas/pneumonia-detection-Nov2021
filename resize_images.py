@@ -1,9 +1,10 @@
 import cv2
 import glob
 import numpy as np
+import os
 
-images_path = glob.glob('pneumonia/train_images/images/*.jpg')
-desired_size = 2000
+images_path = glob.glob('../../Data/pneumonia/test_images_preprocessed/*.jpg')
+desired_size = 500
 
 for img_path in images_path:
     
@@ -20,8 +21,8 @@ for img_path in images_path:
     color = [0, 0, 0]
 
     img_padded = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT,value=color)
-    filename = img_path.split('\\')[1]
-    cv2.imwrite('pneumonia/sized_train/'+filename,img_padded)
+    filename = os.path.basename(img_path)
+    cv2.imwrite('../../Data/pneumonia/pre_test_sized/'+filename,img_padded)
 
 
 
